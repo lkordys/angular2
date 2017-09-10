@@ -1,8 +1,14 @@
 import {Routes, RouterModule} from '@angular/router';
 import {ReviewComponent} from "./review/review.component";
 import {ComponentsComponent} from "./components/components.component";
+import {BenefitsComponent} from "./benefits/benefits.component";
+import {WelcomeComponent} from "./welcome/welcome.component";
 
 const routes: Routes = [
+  {
+    path: 'welcome',
+    component: WelcomeComponent,
+  },
   {
     path: 'review',
     component: ReviewComponent,
@@ -12,8 +18,12 @@ const routes: Routes = [
     component: ComponentsComponent,
   },
   {
+    path: 'benefits',
+    component: BenefitsComponent,
+  },
+  {
     path: '',
-    redirectTo: '/',
+    redirectTo: '/welcome',
     pathMatch: 'full'
   },
 ];
