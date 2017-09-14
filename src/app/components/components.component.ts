@@ -1,5 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit} from "@angular/core";
 import {Person} from "./Person";
+import {Localization} from "./Localization";
+import {OrderByPipe} from "./orderby.pipe";
+import { DialogService } from "ng2-bootstrap-modal";
+import {ConfirmComponent} from "./confirm.component";
 
 @Component({
   selector: 'app-components',
@@ -8,6 +12,10 @@ import {Person} from "./Person";
 })
 
 export class ComponentsComponent implements OnInit {
+
+  isDesc: boolean = false;
+  column: string = 'city';
+  direction: number;
 
   personArray: Person[] = [
     {"id": 1, "fullName": "Kathleen Gentry", "age": 62},
@@ -22,15 +30,46 @@ export class ComponentsComponent implements OnInit {
     {"id": 10, "fullName": "Keely Curtis", "age": 49}
   ];
 
-  constructor() {
+  sort(property) {
+    this.isDesc = !this.isDesc;
+    this.column = property;
+    this.direction = this.isDesc ? 1 : -1;
+  };
 
+  localizationArray: Localization[] =
+    [
+      {"city": "Redcliffe", "street": "2752 Phasellus St.", "postal": "1676"},
+      {"city": "Wilmont", "street": "199-2673 Lorem Rd.", "postal": "252899"},
+      {"city": "Eugene", "street": "Ap #825-9130 Consectetuer Ave", "postal": "75662-357"},
+      {"city": "Rio Saliceto", "street": "P.O. Box 477, 1905 Egestas. St.", "postal": "0672"},
+      {"city": "Ferness", "street": "2841 Nisi St.", "postal": "65177-041"},
+      {"city": "Berwick", "street": "1646 Bibendum Rd.", "postal": "37765"},
+      {"city": "Retford", "street": "2968 Litora St.", "postal": "73642"},
+    ];
 
+  constructor(private datePipe: OrderByPipe,private dialogService:DialogService) {
   }
-
+  showConfirm() {
+    let disposable = this.dialogService.addDialog(ConfirmComponent, {
+      title:'Confirm title',
+      message:'Confirm message'})
+      .subscribe((isConfirmed)=>{
+        //We get dialog result
+        if(isConfirmed) {
+          alert('accepted');
+        }
+        else {
+          alert('declined');
+        }
+      });
+    //We can close dialog calling disposable.unsubscribe();
+    //If dialog was not closed manually close it by timeout
+    setTimeout(()=>{
+      disposable.unsubscribe();
+    },10000);
+  }
   ngOnInit() {
   }
-
-
 
 
 }

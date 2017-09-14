@@ -13,13 +13,54 @@
   </article>
   <article class="tabela active">
     <h2 class="major">Tabela</h2>
-    <span class="image main"><img src="/src/assets/images/abg_.png" alt=""/></span>
+    <div class="col-md-12">
+      <table class="table table-responsive table-hover">
+        <tr>
+          <th class="pointer" (click)="sort('city')">
+            Miasto
+            <i class="fa"
+               [ngClass]="{'fa-sort': column != 'city', 'fa-sort-asc': (column == 'city' && isDesc), 'fa-sort-desc': (column == 'city' && !isDesc) }"
+               aria-hidden="true"> </i>
+          </th>
+          <th class="pointer" (click)="sort('street')">
+            Ulica
+            <i class="fa"
+               [ngClass]="{'fa-sort': column != 'street', 'fa-sort-asc': (column == 'street' && isDesc), 'fa-sort-desc': (column == 'street' && !isDesc) }"
+               aria-hidden="true"> </i>
+          </th>
+          <th class="pointer" (click)="sort('postal')">
+            Kod pocztowy
+            <i class="fa"
+               [ngClass]="{'fa-sort': column != 'postal', 'fa-sort-asc': (column == 'postal' && isDesc), 'fa-sort-desc': (column == 'postal' && !isDesc) }"
+               aria-hidden="true"> </i>
+          </th>
+
+        </tr>
+        <tr
+          *ngFor="let item of localizationArray | orderBy: {property: column, direction: direction}">
+          <td>{{item.city}}</td>
+          <td>{{item.street}}</td>
+          <td>{{item.postal}}</td>
+        </tr>
+      </table>
+    </div>
+  </article>
+  <article class="searchBar active">
+    <h2 class="major">Wyszukiwarka</h2>
+    <span class="image main"><img src="/src/assets/images/abh.png" alt=""/></span>
     <div class="showcase">
+      <input type="text" [(ngModel)]="queryString" id="search" placeholder="Wyszukaj miasta">
       <ul>
-        <li *ngFor='let person of personArray'>
-          <span [innerText]="person.fullName"></span>
+        <li *ngFor="let item of localizationArray | myfilter:queryString">
+          <span [innerText]="item.city"></span>
         </li>
       </ul>
+    </div>
+  </article>
+  <article class="modalne active">
+    <h2 class="major">Okno modalne</h2>
+    <div class="container">
+      <button class="btn btn-default" (click)=showConfirm()>Show confirm</button>
     </div>
   </article>
 </div>
