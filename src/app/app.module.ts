@@ -10,8 +10,6 @@ import {WelcomeComponent} from "./welcome/welcome.component";
 import {BenefitsComponent} from "./benefits/benefits.component";
 import {OrderByPipe} from "./components/orderby.pipe";
 import {FilterPipe} from "./components/myfilter.pipe";
-import {BootstrapModalModule} from "ng2-bootstrap-modal";
-import {ConfirmComponent} from "./components/confirm.component";
 
 @NgModule({
   declarations: [
@@ -20,17 +18,14 @@ import {ConfirmComponent} from "./components/confirm.component";
     ComponentsComponent,
     WelcomeComponent,
     BenefitsComponent,
-    ConfirmComponent,
     OrderByPipe,
     FilterPipe,
   ],
-  entryComponents: [ConfirmComponent],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     appRouterModule,
-    BootstrapModalModule
   ],
   providers: [OrderByPipe],
   bootstrap: [AppComponent]
