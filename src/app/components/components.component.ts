@@ -2,8 +2,6 @@ import {Component, OnInit} from "@angular/core";
 import {Person} from "./Person";
 import {Localization} from "./Localization";
 import {OrderByPipe} from "./orderby.pipe";
-import { DialogService } from "ng2-bootstrap-modal";
-import {ConfirmComponent} from "./confirm.component";
 
 @Component({
   selector: 'app-components',
@@ -16,6 +14,7 @@ export class ComponentsComponent implements OnInit {
   isDesc: boolean = false;
   column: string = 'city';
   direction: number;
+  showDialog = false;
 
   personArray: Person[] = [
     {"id": 1, "fullName": "Kathleen Gentry", "age": 62},
@@ -47,27 +46,9 @@ export class ComponentsComponent implements OnInit {
       {"city": "Retford", "street": "2968 Litora St.", "postal": "73642"},
     ];
 
-  constructor(private datePipe: OrderByPipe,private dialogService:DialogService) {
+  constructor(private datePipe: OrderByPipe) {
   }
-  showConfirm() {
-    let disposable = this.dialogService.addDialog(ConfirmComponent, {
-      title:'Confirm title',
-      message:'Confirm message'})
-      .subscribe((isConfirmed)=>{
-        //We get dialog result
-        if(isConfirmed) {
-          alert('accepted');
-        }
-        else {
-          alert('declined');
-        }
-      });
-    //We can close dialog calling disposable.unsubscribe();
-    //If dialog was not closed manually close it by timeout
-    setTimeout(()=>{
-      disposable.unsubscribe();
-    },10000);
-  }
+
   ngOnInit() {
   }
 

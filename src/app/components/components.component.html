@@ -59,9 +59,14 @@
   </article>
   <article class="modalne active">
     <h2 class="major">Okno modalne</h2>
+    <span class="image main"><img src="/src/assets/images/ccd.png" alt=""/></span>
     <div class="container">
-      <button class="btn btn-default" (click)=showConfirm()>Show confirm</button>
+      <button (click)="showDialog = !showDialog" class="btn">Otwórz</button>
     </div>
   </article>
 </div>
 
+
+<app-dialog [(visible)]="showDialog">
+  <h1>Hello World</h1>
+</app-dialog>

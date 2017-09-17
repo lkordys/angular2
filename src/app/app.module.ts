@@ -10,6 +10,9 @@ import {WelcomeComponent} from "./welcome/welcome.component";
 import {BenefitsComponent} from "./benefits/benefits.component";
 import {OrderByPipe} from "./components/orderby.pipe";
 import {FilterPipe} from "./components/myfilter.pipe";
+import { DialogComponent } from './dialog/dialog.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 @NgModule({
   declarations: [
@@ -20,12 +23,15 @@ import {FilterPipe} from "./components/myfilter.pipe";
     BenefitsComponent,
     OrderByPipe,
     FilterPipe,
+    DialogComponent,
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
     appRouterModule,
+    BrowserModule,
+    BrowserAnimationsModule
   ],
   providers: [OrderByPipe],
   bootstrap: [AppComponent]
