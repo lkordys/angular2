@@ -12,6 +12,7 @@ import {OrderByPipe} from "./components/orderby.pipe";
 import {FilterPipe} from "./components/myfilter.pipe";
 import { DialogComponent } from './dialog/dialog.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -31,7 +32,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpModule,
     appRouterModule,
     BrowserModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    ReactiveFormsModule
   ],
   providers: [OrderByPipe],
   bootstrap: [AppComponent]

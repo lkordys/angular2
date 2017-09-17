@@ -2,6 +2,8 @@ import {Component, OnInit} from "@angular/core";
 import {Person} from "./Person";
 import {Localization} from "./Localization";
 import {OrderByPipe} from "./orderby.pipe";
+import {FormGroup, FormControl, Validators} from "@angular/forms";
+import {User} from "./User";
 
 @Component({
   selector: 'app-components',
@@ -15,6 +17,18 @@ export class ComponentsComponent implements OnInit {
   column: string = 'city';
   direction: number;
   showDialog = false;
+  user: FormGroup;
+  isFormVisible = true;
+
+  ngOnInit() {
+    this.user = new FormGroup({
+      name: new FormControl('', [Validators.required, Validators.minLength(2)]),
+      location: new FormControl('', [Validators.required]),
+    });
+  }
+  onSubmit({ value, valid }: { value: User, valid: boolean }) {
+    if (valid) this.isFormVisible = false;
+  }
 
   personArray: Person[] = [
     {"id": 1, "fullName": "Kathleen Gentry", "age": 62},
@@ -48,9 +62,5 @@ export class ComponentsComponent implements OnInit {
 
   constructor(private datePipe: OrderByPipe) {
   }
-
-  ngOnInit() {
-  }
-
 
 }
