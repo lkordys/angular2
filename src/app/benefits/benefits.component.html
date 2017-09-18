@@ -1,3 +1,21 @@
-<p>
-  benefits works!
-</p>
+<div id="main">
+  <article class="active">
+    <h2 class="major">Zalety/wady</h2>
+    <h3>Zalety</h3>
+    <div class="advantages">
+      <ul>
+        <li *ngFor="let advantage of advantagesList">
+          <span [innerText]="advantage"></span>
+        </li>
+      </ul>
+    </div>
+    <h3>Wady</h3>
+    <div class="disadvantages">
+      <ul>
+        <li *ngFor="let disadvantage of disAdvantagesList">
+          <span [innerText]="disadvantage"></span>
+        </li>
+      </ul>
+    </div>
+  </article>
+</div>
